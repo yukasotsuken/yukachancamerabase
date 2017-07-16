@@ -22,10 +22,10 @@ class ThreadingExample(object):
 
     def run(self):
         """ Method that runs forever """
+        print("優花ちゃん頑張ってます！")
         while True:
             # Do something
             readFile()
-            print('Doing something imporant in the background')
 
             #time.sleep(self.interval)
 

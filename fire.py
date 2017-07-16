@@ -29,7 +29,7 @@ def enviar(nk,id,x,y,tm,destroy):
     else:
         db.child("floor3").child(id).remove(user['idToken'])
         delData(id-1)
-        writeFile()
+        
 
 
 
