@@ -14,8 +14,10 @@ def putData (id,nk,tm,x,y):
     datos.insert(id-1, user)
 
 
-def mama():
-    return datos
+
+def delData(id):
+    datos.pop(id)
+
 
 
 def writeFile():

@@ -22,14 +22,23 @@ db = firebase.database()
 
 
 
-def enviar(nk,id,x,y,tm):
+def enviar(nk,id,x,y,tm,destroy):
     data = {"nk": nk, "id": id,"x": int(x),"y": int(y), "time": tm}
-    results = db.child("floor3").child(id).set(data, user['idToken'])
+    if(destroy == False):
+        results = db.child("floor3").child(id).set(data, user['idToken'])
+    else:
+        db.child("floor3").child(id).remove(user['idToken'])
+        delData(id-1)
+        writeFile()
+
 
 
 def getData(data):
         for u in data:
-            enviar(u['nk'],u['id'],u['x'],u['y'],u['tm'])
+            if(time.time()-u['tm']>5):
+                enviar(u['nk'],u['id'],u['x'],u['y'],u['tm'], True)
+            else:
+                enviar(u['nk'],u['id'],u['x'],u['y'],u['tm'], False)
 
 
 def readFile():
