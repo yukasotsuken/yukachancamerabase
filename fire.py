@@ -3,7 +3,7 @@ import sys
 import datetime
 import time
 import json
-import dataTransfer
+import delData
 
 
 
@@ -28,8 +28,8 @@ def enviar(nk,id,x,y,tm,destroy):
         results = db.child("floor3").child(id).set(data, user['idToken'])
     else:
         db.child("floor3").child(id).remove(user['idToken'])
-        delData(id-1)
-        
+        erase(id-1)
+
 
 
 

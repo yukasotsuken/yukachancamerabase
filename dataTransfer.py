@@ -15,7 +15,7 @@ def putData (id,nk,tm,x,y):
 
 
 
-def delData(id):
+def hola(id):
     datos.pop(id)
     println("data deleted")
     writeFile()
