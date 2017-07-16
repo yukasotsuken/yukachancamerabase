@@ -21,6 +21,18 @@ db = firebase.database()
 
 
 
+def say(id):
+    print("borrar " + str(id))
+    with open('data.json', 'r+') as f:
+        json_data = json.load(f)
+        for i in json_data:
+            if i['id'] == id:
+                json_data.remove(i)
+        f.seek(0)
+        f.write(json.dumps(json_data))
+        f.truncate()
+
+
 
 def enviar(nk,id,x,y,tm,destroy):
     data = {"nk": nk, "id": id,"x": int(x),"y": int(y), "time": tm}
@@ -28,17 +40,23 @@ def enviar(nk,id,x,y,tm,destroy):
         results = db.child("floor3").child(id).set(data, user['idToken'])
     else:
         db.child("floor3").child(id).remove(user['idToken'])
-        erase(id-1)
+        say(id)
+
+
+
 
 
 
 
 def getData(data):
-        for u in data:
-            if(time.time()-u['tm']>5):
-                enviar(u['nk'],u['id'],u['x'],u['y'],u['tm'], True)
-            else:
-                enviar(u['nk'],u['id'],u['x'],u['y'],u['tm'], False)
+        if len(data) > 0:
+            for u in data:
+                if(time.time()-u['tm']>5):
+                    enviar(u['nk'],u['id'],u['x'],u['y'],u['tm'], True)
+                else:
+                    enviar(u['nk'],u['id'],u['x'],u['y'],u['tm'], False)
+
+
 
 
 def readFile():
