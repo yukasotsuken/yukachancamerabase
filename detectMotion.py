@@ -53,7 +53,7 @@ while True:
 
 
     frameDelta = cv2.absdiff(firstFrame, gray)
-    thresh = cv2.threshold(frameDelta, 40, 255, cv2.THRESH_BINARY)[1]
+    thresh = cv2.threshold(frameDelta, 43, 255, cv2.THRESH_BINARY)[1]
 
 
 

@@ -34,6 +34,8 @@ def say(id):
 
 
 
+db.child("floor3").child(0).set("", user['idToken'])
+
 def enviar(nk,id,x,y,tm,destroy):
     data = {"nk": nk, "id": id,"x": int(x),"y": int(y), "time": tm}
     if(destroy == False):
